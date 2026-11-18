@@ -1,0 +1,93 @@
+# One entry per kind of cell. The split is fixed here and nowhere else.
+#
+# split:
+#   development  rotates as training / held-out validation kind (leave one kind out)
+#   train_only   in the training set of every fold, never held out (too few cells to score)
+#   test         never used for training or for any choice; scored once at the end
+#   unused       not downloaded or not usable yet; ignored by the code
+# The reasoning is in docs/splits.md.
+#
+# nominal_capacity_ah, voltage_min, voltage_max are datasheet values and drive the
+# standardization (docs/standardization.md). "verified: false" marks numbers that
+# have not yet been checked against the datasheet or the data.
+
+kit:
+  split: unused
+  chemistry: NMC / C-SiO, 18650
+  usage: WLTP driving profile (36 of 228 cells)
+  nominal_capacity_ah: 3.0
+  voltage_min: 2.5
+  voltage_max: 4.2
+  verified: true
+
+tum:
+  split: unused   # becomes train_only once the highway cell has finished downloading
+  chemistry: NMC / graphite pouch (VW ID.3)
+  usage: recorded highway and commuter driving (3 cells)
+  nominal_capacity_ah: 78.0
+  voltage_min: 2.5
+  voltage_max: 4.2
+  verified: true    # limits read from u_cut_min / u_cut_max in the check-up files
+
+lyon:
+  split: unused
+  chemistry: LFP / graphite, A123 18650
+  usage: WLTP at 50 C (20 cells)
+  nominal_capacity_ah: 1.1
+  voltage_min: 2.0
+  voltage_max: 3.65
+  verified: false   # repository host unreachable so far
+
+xjtu:
+  split: development
+  chemistry: NCM523, LISHEN 18650
+  usage: random-walk discharge, Batch 5 (8 cells)
+  nominal_capacity_ah: 2.0
+  voltage_min: 2.5
+  voltage_max: 4.2
+  verified: true
+
+cmu:
+  split: development
+  chemistry: NCA-type, Sony-Murata VTC6 18650
+  usage: eVTOL mission profiles (22 cells)
+  nominal_capacity_ah: 3.0
+  voltage_min: 2.5
+  voltage_max: 4.2
+  verified: true
+
+rwth:
+  split: unused
+  chemistry: NCA / C+Si, 18650
+  usage: recorded drive cycle (28 cells)
+  nominal_capacity_ah: 3.4
+  voltage_min: 2.65
+  voltage_max: 4.2
+  verified: false   # not downloaded yet: host needs a browser
+
+stanford_lg:
+  split: development
+  chemistry: NMC / graphite-Si, LG INR21700-M50T
+  usage: UDDS driving (10 cells)
+  nominal_capacity_ah: 4.85
+  voltage_min: 2.5
+  voltage_max: 4.2
+  verified: true
+
+nasa:
+  split: test
+  chemistry: LCO, 18650
+  usage: random-walk current (28 cells)
+  nominal_capacity_ah: 2.1
+  voltage_min: 3.2
+  voltage_max: 4.2
+  verified: true
+
+stanford_nca:
+  split: development
+  chemistry: NCA / SiOx-graphite
+  usage: driving, periodic and synthetic profiles (92 cells)
+  nominal_capacity_ah: 1.0    # the data is already published as C-rate
+  voltage_min: 2.8
+  voltage_max: 4.2
+  verified: false   # limits read off the data (0.1% and 99.9% quantiles), not a datasheet

@@ -1,0 +1,31 @@
+[project]
+name = "battery-icl"
+version = "0.1.0"
+description = "In-context battery health estimation for unseen battery kinds (CS182 project)"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "scipy",
+    "h5py",
+    "pyyaml",
+    "scikit-learn",
+    "matplotlib",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+# Needed for modelling (GPU box). Data cleaning works without it.
+model = ["torch", "chronos-forecasting>=2.0", "peft"]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
