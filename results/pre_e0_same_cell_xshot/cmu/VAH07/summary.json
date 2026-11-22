@@ -1,0 +1,75 @@
+{
+  "dataset": "cmu",
+  "cell": "VAH07",
+  "cell_clip_count": 500,
+  "split": "First half of elapsed clip time for support; second half for queries.",
+  "label": "Clip midpoint SoH interpolated between capacity tests.",
+  "checkpoint": "amazon/chronos-2",
+  "checkpoint_revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "chronos_version": "2.3.2",
+  "device": "cuda",
+  "seed": 0,
+  "git_commit": "161899be57f7355b95eb1ee19acfb0d7801f81c0",
+  "runner_sha256": "94487f9508c31280dab7a9bf52295190522167e538540086cd56670b9046ba87",
+  "runs": [
+    {
+      "shots": 1,
+      "support_time_s": [
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.4225357420304243,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.4126822293973436
+      }
+    },
+    {
+      "shots": 2,
+      "support_time_s": [
+        757821.607371528,
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.4714543725930007,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.334296979156195
+      }
+    },
+    {
+      "shots": 4,
+      "support_time_s": [
+        506463.451389593,
+        627063.4513895931,
+        757821.607371528,
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.3301773164786546,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.1703481627445596
+      }
+    },
+    {
+      "shots": 8,
+      "support_time_s": [
+        27206.7432495032,
+        140606.7432495032,
+        264806.7432495032,
+        391263.451389593,
+        506463.451389593,
+        627063.4513895931,
+        757821.607371528,
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.3765171696158016,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.1458761551800896
+      }
+    }
+  ]
+}

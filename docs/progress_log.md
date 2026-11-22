@@ -101,6 +101,28 @@ Source: `results/e0_frozen_sanity/cmu.json`, from `scripts/run_e0_frozen_sanity.
 one run and no confidence interval. It shows the pipeline works; it says nothing yet
 about unseen kinds. No test-set label has been used to fit or score a model.
 
+**22 November 2026 — Same-cell x-shot pilot before E0.** We rebuilt the 500
+standard 30-minute clips for CMU cell VAH07 from its downloaded CSV. Six reference
+capacity tests provided the interpolated clip labels. We selected eight support
+clips across the first half of elapsed time, then gave frozen Chronos-2 the latest
+1, 2, 4 or 8 of those clips. Each run estimated SoH for the same 255 later clips.
+The checkpoint received the query current and voltage after the clip was observed.
+
+| Shots | Chronos-2 with current and voltage | Chronos-2 with SoH history only | Last known SoH |
+|---:|---:|---:|---:|
+| 1 | 1.423 | 1.413 | 1.413 |
+| 2 | 1.471 | 1.334 | 1.413 |
+| 4 | 1.330 | 1.170 | 1.413 |
+| 8 | 1.377 | 1.146 | 1.413 |
+
+Errors are mean absolute errors in SoH percentage points. On this cell the
+electrical inputs increased error at every shot count relative to the history-only
+forecast. The history-only forecast was constant across all queries at a given
+shot count because every query used the same support and one-step horizon.
+These are retrospective estimates using the cell's peak diagnostic capacity for
+normalization. [Run summary](../results/pre_e0_same_cell_xshot/cmu/VAH07/summary.json)
+and [query predictions](../results/pre_e0_same_cell_xshot/cmu/VAH07/predictions.csv).
+
 ### Open questions
 
 See "Decisions the team needs to make" in [TODO.md](../TODO.md): what to do with TUM,
