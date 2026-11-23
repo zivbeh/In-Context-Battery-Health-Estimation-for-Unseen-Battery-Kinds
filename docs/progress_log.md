@@ -123,6 +123,15 @@ These are retrospective estimates using the cell's peak diagnostic capacity for
 normalization. [Run summary](../results/pre_e0_same_cell_xshot/cmu/VAH07/summary.json)
 and [query predictions](../results/pre_e0_same_cell_xshot/cmu/VAH07/predictions.csv).
 
+![Four-shot Chronos-2 estimates stay near 95% as VAH07's reference SoH declines over ten days.](../results/pre_e0_same_cell_xshot/cmu/VAH07/direct_soh_4shot.png)
+
+The four-shot estimates stayed between 95.17% and 95.58% SoH and exceeded the
+interpolated reference on 244 of 255 clips. By the final clip, 9.91 days after
+the last support label, Chronos-2 estimated 95.20% SoH against a reference of
+92.72%, an overestimate of 2.49 percentage points. The horizontal axis shows
+elapsed time for interpretation. The model received the same four support clips
+for each prediction and had no elapsed-time input.
+
 ### Open questions
 
 See "Decisions the team needs to make" in [TODO.md](../TODO.md): what to do with TUM,
