@@ -1,0 +1,78 @@
+{
+  "dataset": "cmu",
+  "cell": "VAH07",
+  "cell_clip_count": 500,
+  "split": "First half of elapsed clip time for support; second half for queries.",
+  "label": "Clip midpoint SoH interpolated between capacity tests.",
+  "checkpoint": "amazon/chronos-2",
+  "checkpoint_revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "chronos_version": "2.3.2",
+  "device": "cuda",
+  "seed": 0,
+  "git_commit": "0c3fc63b182db5dab59c1718ed0f4f09c0f097df",
+  "runner_sha256": "94487f9508c31280dab7a9bf52295190522167e538540086cd56670b9046ba87",
+  "runs": [
+    {
+      "shots": 1,
+      "support_time_s": [
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.4225357420304243,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.4126822293973436
+      }
+    },
+    {
+      "shots": 2,
+      "support_time_s": [
+        784821.607371528,
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.4095219911313523,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.351721917881685
+      }
+    },
+    {
+      "shots": 5,
+      "support_time_s": [
+        497463.451389593,
+        589263.4513895931,
+        677463.4513895931,
+        784821.607371528,
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.2599824456607593,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.1769709633845908
+      }
+    },
+    {
+      "shots": 10,
+      "support_time_s": [
+        27206.7432495032,
+        115406.7432495032,
+        209006.7432495032,
+        299006.7432495032,
+        400263.451389593,
+        497463.451389593,
+        589263.4513895931,
+        677463.4513895931,
+        784821.607371528,
+        876621.607371528
+      ],
+      "query_count": 255,
+      "mae_points": {
+        "predicted_soh": 1.403893606335509,
+        "last_known_soh": 1.412765675900029,
+        "health_only_chronos": 1.2448182760500441
+      }
+    }
+  ]
+}

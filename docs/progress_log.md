@@ -6,6 +6,28 @@ that reproduces them. Hypotheses are in [hypotheses.md](hypotheses.md).
 
 ---
 
+## Week of 23 November 2026
+
+### VAH07 direct SoH prediction with 1, 2, 5 and 10 labelled clips
+
+Frozen Chronos-2 predicted SoH for the same 255 later clips of CMU cell VAH07
+used in the earlier experiment. We selected ten labelled clips across the first
+half of the cell's timeline. Each run used the most recent 1, 2, 5 or 10 from
+that pool. With ten candidates, the earlier support clip in the two-shot run
+differs from the one selected in the previous eight-candidate experiment.
+
+| Labelled clips | Chronos-2 with current and voltage | Chronos-2 with SoH history only | Last known SoH |
+|---:|---:|---:|---:|
+| 1 | 1.423 | 1.413 | 1.413 |
+| 2 | 1.410 | 1.352 | 1.413 |
+| 5 | 1.260 | 1.177 | 1.413 |
+| 10 | 1.404 | 1.245 | 1.413 |
+
+Five labelled clips gave the lowest direct mean absolute error on this cell,
+1.260 SoH percentage points. Ten clips raised it to 1.404 points.
+[Run summary and support timestamps](../results/pre_e0_same_cell_xshot/cmu/VAH07/shots_1_2_5_10/summary.json)
+and [per-clip predictions](../results/pre_e0_same_cell_xshot/cmu/VAH07/shots_1_2_5_10/predictions.csv).
+
 ## Week of 16 November 2026
 
 ### Direction from the professor
