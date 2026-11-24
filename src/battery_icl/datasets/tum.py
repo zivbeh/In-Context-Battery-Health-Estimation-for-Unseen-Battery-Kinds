@@ -8,8 +8,10 @@ two sorts:
     *_CU_*.txt    check-ups, each with a measured discharge capacity
 
 Every file starts its clock at zero, so its "Start of Test" header line is
-used to put all files of a cell on one time axis. The check-up capacity is
+used to put all files of a cell on one time axis. One highway file counts
+time in hours instead of seconds. The check-up capacity is
 the column cap_dis_measure, which the tester stores in ampere-seconds.
+Check-up files marked pOCV hold no capacity test and are skipped.
 """
 
 from datetime import datetime
@@ -20,7 +22,7 @@ import pandas as pd
 from ..standardize import Cell
 
 FOLDERS = {"highway": "highway_scenario", "commuter": "commuter_scenario", "1C1C": "1C1C_cycling"}
-COLUMNS = {"~Time[s]": "time_s", "I[A]": "current_a", "U[V]": "voltage_v", "T1[°C]": "temperature_c"}
+COLUMNS = {"I[A]": "current_a", "U[V]": "voltage_v", "T1[°C]": "temperature_c"}
 
 
 def list_cells(raw_dir: Path) -> list[str]:
@@ -36,10 +38,10 @@ def load_cell(raw_dir: Path, cell_id: str) -> Cell:
     for start, path in sorted(files):
         offset_s = (start - test_start).total_seconds()
         if "_cyc_" in path.name:
-            part = _read(path, list(COLUMNS)).rename(columns=COLUMNS)   # current is charge-positive
-            part["time_s"] += offset_s
-            usage_parts.append(part)
-        elif "_CU_" in path.name:
+            usage_parts.append(_read_usage(path, offset_s))
+        # pOCV files are slow open-circuit-voltage sweeps whose capacity column
+        # reads about 0.01 Ah; the real check-up is the matching "_v2" file.
+        elif "_CU_" in path.name and "pOCV" not in path.name:
             measured = _read(path, ["cap_dis_measure"])["cap_dis_measure"]
             measured = measured[measured != 0]
             if len(measured):   # some check-up files hold other tests and no capacity
@@ -62,6 +64,16 @@ def _header(path: Path) -> list[str]:
 def _start_of_test(path: Path) -> datetime:
     line = next(l for l in _header(path) if l.startswith("~Start of Test:"))
     return datetime.strptime(line.split(":", 1)[1].strip(), "%d.%m.%Y %H:%M:%S")
+
+
+def _read_usage(path: Path, offset_s: float) -> pd.DataFrame:
+    """Ageing use from one file, in seconds since the cell's first file. Current is charge-positive."""
+    time_column = _header(path)[-1].split("\t")[0]   # "~Time[s]" or "~Time[h]"
+    part = _read(path, [time_column, *COLUMNS]).rename(columns=COLUMNS)
+    seconds_per_unit = 3600.0 if time_column == "~Time[h]" else 1.0
+    part.insert(0, "time_s", part.pop(time_column) * seconds_per_unit + offset_s)
+    # The commuter log has a short burst of voltages in the thousands of volts.
+    return part[part["voltage_v"].between(0.0, 5.0)]
 
 
 def _read(path: Path, columns: list[str]) -> pd.DataFrame:

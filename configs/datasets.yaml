@@ -12,16 +12,16 @@
 # have not yet been checked against the datasheet or the data.
 
 kit:
-  split: unused
+  split: development
   chemistry: NMC / C-SiO, 18650
-  usage: WLTP driving profile (36 of 228 cells)
+  usage: driving profile at 0 to 40 °C (36 of 228 cells), aged down to about 40% health
   nominal_capacity_ah: 3.0
   voltage_min: 2.5
   voltage_max: 4.2
   verified: true
 
 tum:
-  split: unused   # becomes train_only once the highway cell has finished downloading
+  split: train_only   # deep-ageing training data; never held out (only three cells)
   chemistry: NMC / graphite pouch (VW ID.3)
   usage: recorded highway and commuter driving (3 cells)
   nominal_capacity_ah: 78.0

@@ -1,0 +1,7 @@
+kind,full_charges,estimated,cells,mae_uncalibrated,tracking
+kit,10217,4756,12,2.419,0.982
+xjtu,1269,1189,8,0.994,0.981
+cmu,20108,10246,21,6.047,0.642
+stanford_lg,2099,2004,10,2.872,0.391
+stanford_nca,7749,7644,6,2.72,0.989
+tum,4639,2727,1,11.929,0.883

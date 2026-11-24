@@ -1,0 +1,7 @@
+kind,steady_charges,estimated,cells,mae_uncalibrated,tracking,median_window
+kit,39836,19800,36,5.278,0.896,0.625
+xjtu,2804,901,8,4.976,0.99,0.275
+cmu,3201,2255,22,7.096,0.213,0.3
+stanford_lg,4395,1218,9,3.496,0.629,0.275
+stanford_nca,131771,69132,92,6.526,0.851,0.675
+tum,24166,4040,2,6.978,0.894,0.225

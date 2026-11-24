@@ -17,8 +17,9 @@ The proposal planned nine kinds. Five are usable now:
 | `stanford_nca` | 92 | driving (8), synthetic (31), periodic (30), constant current (23) | 79% to 86% |
 | `nasa` | 28 | random-walk current | 33% to 84% |
 
-Not used: `kit` (only check-up results downloaded, no current or voltage logs),
-`tum` (three cells, partly downloaded), `lyon` and `rwth` (not downloadable by script).
+Added on 2026-11-23: `kit` (36 cells, driving profile at 0 to 40 °C, aged to about 40%; the
+ageing logs are now parsed) is a development kind, and `tum` (three cells) is train-only,
+never held out. Not used: `lyon` and `rwth` (not downloadable by script).
 
 With five kinds, a fixed 5 / 2 / 2 split is impossible, and any fixed split leaves
 one or two kinds to carry each conclusion.
@@ -27,7 +28,8 @@ one or two kinds to carry each conclusion.
 
 ```
 test         nasa                                    locked until the method is frozen
-development  cmu, xjtu, stanford_lg, stanford_nca    leave one kind out, four folds
+development  kit, cmu, xjtu, stanford_lg, stanford_nca   leave one kind out, five folds
+train only   tum
 ```
 
 **Development: leave one kind out.** Each development kind is held out once. The

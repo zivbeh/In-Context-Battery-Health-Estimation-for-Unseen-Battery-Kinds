@@ -8,10 +8,11 @@ Every parser exposes the same two functions:
 Add a new dataset by writing such a module and listing it in PARSERS.
 """
 
-from . import cmu, nasa, stanford_lg, stanford_nca, tum, xjtu
+from . import cmu, kit, nasa, stanford_lg, stanford_nca, tum, xjtu
 
 PARSERS = {
     "cmu": cmu,
+    "kit": kit,
     "nasa": nasa,
     "stanford_lg": stanford_lg,
     "stanford_nca": stanford_nca,

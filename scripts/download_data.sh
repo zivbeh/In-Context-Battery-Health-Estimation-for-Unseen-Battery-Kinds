@@ -73,7 +73,8 @@ tum() {  # 32.5 GB, BaSyTec text files; rsync access is published on the landing
 
 KIT_URL="https://radar.kit.edu/radar-backend/archives"
 
-kit() {  # 7.2 GB: check-up results, cell configs, docs and the 30-second ageing log.
+kit() {  # 7.2 GB: check-up results, cell configs, docs and the ageing logs (67 GB unpacked).
+         # The parser reads the 2-second logs of cells P065 to P076, unpacked to kit/log_age/.
          # The host answers 429 to quick successive requests, hence the pauses.
     fetch "$KIT_URL/CoNQplSNoVeXExyV/retrieveFile/15a3gtgdzdeffbr8" "$RAW/kit/cell_eocv2.zip"; sleep 60
     fetch "$KIT_URL/CoNQplSNoVeXExyV/retrieveFile/w049egbgr21pfcm2" "$RAW/kit/cfg.zip"; sleep 60
