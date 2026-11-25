@@ -116,6 +116,15 @@ LADDER = [("Park et al. protocol", ["extra_park_q"]),
           ("+ Park reading", ["extra_park_q"])]
 
 
+def ladder_sets() -> dict:
+    """Park's reading alone, then the own-reference charge ratio with one group added per rung."""
+    sets, used = {LADDER[0][0]: LADDER[0][1]}, []
+    for name, feats in LADDER[1:]:
+        used = used + [x for x in feats if x not in used]
+        sets[name] = list(used)
+    return sets
+
+
 def score(f: pd.DataFrame, sets: dict, k: int, only_park: bool) -> list[dict]:
     rows = []
     for kind in kinds("development"):
@@ -149,10 +158,7 @@ def main() -> None:
     park = park_table()
     park.round(5).to_csv(OUT / "park_sessions.csv", index=False)
     f = x27.build_events(extra=attach_park(park))
-    sets, used = {}, []
-    for name, feats in LADDER:
-        used = feats if not sets else used + [x for x in feats if x not in used]
-        sets[name] = list(used)
+    sets = ladder_sets()
     rows = []
     for only_park in (False, True):
         for k in (5, 20):
